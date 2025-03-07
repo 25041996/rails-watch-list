@@ -1,4 +1,5 @@
-h2><%= @list.name %></h2>
+<div class = container>
+<h2><%= @list.name %></h2>
 
 
 <%= link_to "all lists", lists_path %>
@@ -8,3 +9,22 @@ h2><%= @list.name %></h2>
   list_path(@list),
   data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
 %>
+
+
+<% @list.bookmarks.each do |bookmark| %>
+
+  <p>
+  <%= bookmark.movie.title %>
+  <%= bookmark.movie.overview %>
+  <%= bookmark.movie.rating %>
+  </p>
+  <%= bookmark.comment %>
+<% end %>
+
+<%= link_to "bookmark", new_list_bookmark_path(@list) %>
+
+<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+
+
+
+</div>
